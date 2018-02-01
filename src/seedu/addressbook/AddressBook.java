@@ -218,6 +218,15 @@ public class AddressBook {
         }
     }
 
+    public static void test() {
+        while (true) {
+            String userCommand = getUserInput();
+            echoUserCommand(userCommand);
+            String feedback = executeCommand(userCommand);
+            showResultToUser(feedback);
+        }
+    }
+
     /*
      * NOTE : =============================================================
      * The method header comment can be omitted if the method is trivial
