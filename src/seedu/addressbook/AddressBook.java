@@ -103,6 +103,7 @@ public class AddressBook {
     private static final String COMMAND_ADD_PARAMETERS = "NAME "
                                                       + PERSON_DATA_PREFIX_PHONE + "PHONE_NUMBER "
                                                       + PERSON_DATA_PREFIX_EMAIL + "EMAIL";
+    private static final String COMMAND_REMOVE_WORD = "remove";
     private static final String COMMAND_ADD_EXAMPLE = COMMAND_ADD_WORD + " John Doe p/98765432 e/johnd@gmail.com";
 
     private static final String COMMAND_FIND_WORD = "find";
@@ -210,15 +211,6 @@ public class AddressBook {
         showWelcomeMessage();
         processProgramArgs(args);
         loadDataFromStorage();
-        while (true) {
-            String userCommand = getUserInput();
-            echoUserCommand(userCommand);
-            String feedback = executeCommand(userCommand);
-            showResultToUser(feedback);
-        }
-    }
-
-    public static void test() {
         while (true) {
             String userCommand = getUserInput();
             echoUserCommand(userCommand);
@@ -386,6 +378,8 @@ public class AddressBook {
             return executeListAllPersonsInAddressBook();
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
+        case COMMAND_REMOVE_WORD:
+            return executeRemovePerson();
         case COMMAND_CLEAR_WORD:
             return executeClearAddressBook();
         case COMMAND_HELP_WORD:
@@ -575,6 +569,17 @@ public class AddressBook {
     private static String executeClearAddressBook() {
         clearAddressBook();
         return MESSAGE_ADDRESSBOOK_CLEARED;
+    }
+
+    /**
+     * Removes first person in the address book.
+     *
+     * @return feedback display message for the operation result
+     */
+    private static String executeRemovePerson() {
+        String removeFirstPerson = "delete 1";
+        String printResult = executeCommand(removeFirstPerson);
+        return printResult;
     }
 
     /**
